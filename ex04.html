@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function init(){
+            //alert("실행")
+
+        let div=document.getElementById("div1")
+        //document.getElementById("div1").innerHTML="test" 한줄로 이렇게 쓰기도 한다
+        //div.innerHTML="test"
+        console.log(div)
+        console.log(document.getElementById("div1") )
+
+        div.style.color="blue";
+        document.getElementById("div1").style.color="red";
+
+            let name = prompt("이름 입력")
+            let age = prompt(`나이 입력`)
+
+            console.log("age type: ", typeof(age) )
+            console.log("age type: ", typeof(Number(age)) )
+            console.log("age type: ", typeof(ParseInt((age)) ) )
+
+            let ageNum=Number(age / 3);
+            let ageNum2=parseInt(age / 3)
+                console.log("ageNum type: ", typeof(ageNum) )
+
+                /* 숫자를 문자로 변환 
+                    ageNum + "" 또는 ageNum.toString() */
+    
+                console.log("number : ",ageNum)
+                console.log("parseInt : ",ageNum2)
+
+
+            document.getElementById("div1").innerHTML= `
+                <b>이름</b>: ${name} <br>
+                <b>나이</b>: ${age + 1} <br>
+                <b>나이</b>: ${ageNum / 3} <br>
+                <b>나이</b>: ${ageNum2 / 3} <br>                
+            `
+            let num=123;
+            num="문자로 변환";
+            console.log("변경 후 num: ",num)
+
+            const str = "안녕하세요";
+            console.log(`str:${str}` )
+            //str="변경합니다";
+            console.log (`변경 후 str: ${str}`)
+
+            
+            let n ="김길이"
+            let a = 20
+            let addr = "주소"
+            let tel = "010xxxxx"
+            let birth = "1999"
+
+            let message = ""
+            
+            let d = document.getElementById("div2");
+
+            //d.innerHTML = "이름 : "+n + "<br>나이 : "+age + "<br>주소 : "+addr
+            /*
+            message = "이름 : "+n
+            message = message + "<br>나이 : "+age
+            message = message + "<br>주소 : "+addr
+            */
+            message = `이름 : ${n}<br>
+                <br>나이 : ${age}<br>
+                <br>주소 : ${addr}
+            `
+            d.innerHTML = message
+        }
+
+        function test01(){
+            document.getElementById("div1").style.fontSize="30px";
+            document.getElementById("div1").style.color="green";
+            document.getElementById("div1").innerHTML="안녕하세요";            
+        }  
+        function test02(){
+            let div=document.getElementById("div1")
+            div.getElementById("div1").style.fontSize="20px";
+            div.getElementById("div1").style.color="gold";
+            div.getElementById("div1").innerHTML="반가워";     
+            // 이렇게 변수 선언하면 간단하게 쓰기 가능       
+        }  
+    </script>
+</head>
+<body onload="init()">
+    <div id="div1">테스트</div>
+    <button onclick="test01()">클릭</button>
+    <button onclick="test02()">클릭</button>
+</body>
+</html>
