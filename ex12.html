@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //sumFunc01(); 얘는 위에 쓸 수 있음
+        function sumFunc01(){
+            alert("실행-01")
+        }
+
+        //함수를 변수처럼 정의하는건 밑에처럼..익명함수.. 이거는 함수 만나기전에 찾아가지 못해서 밑에 써야함
+        //속도는 좀 느리지만 필요할때 호출하므로 메모리를 절감할 수 있음
+        let sumFunc=function(){
+            alert("실행 02")
+        }
+        //sumFunc(); 익명함수는 밑에 써야함
+
+        //실행되는 방법은 1,2,3 여기 나온게 다 결과적으로 동일함, 펑션이 빠지고 화살표가 생긴 것이라고 생각하기
+        const test03 = () => { alert("실행 03")  }
+        //test03() 
+
+        //밑에 세 개는 또 동일한거임
+        function test04(){
+            alert(1);
+            alert(2);
+            return 100;
+        }
+        //alert(test04()) ;
+        const test05 = () => {
+            alert(10); 
+            alert(20);
+            return 1234;
+        }
+        //alert( test05() );
+
+        const test06 = (a, b) => {
+            alert(a+b);
+        }
+        //test06(10, 20)
+
+        //중괄호 있을땐 리턴을 써야함 그러면 동일하게 300이 출력됨
+        const test07 = () => {return 100+200}
+        const test08 = () => 100+200
+        const test09 = () => (100+200)
+
+        document.write(`test07: ${test07()}<br>`)
+        document.write(`test08: ${test08()}<br>`)
+        document.write(`test09: ${test09()}<br>`)
+
+        //밑에 두개 동일하게 출력 ㅇㅇ 펑션과 콘스트 등호화살표는 같다..
+        function test10(n){
+            if(n % 2 ==0)
+                return "짝수";
+            return "홀수";
+            // 변수 = (조건)? 참:거짓;
+        }
+        document.write(`<hr>test10 : ${test10(11)}<br>`)
+
+        const test11 = (n) => {
+            //const result = (n % 2 == 0) ? "짝짝" : "홀홀" ;
+            //return result;
+            return (n % 2 == 0) ? "짝짝" : "홀홀" ;
+        }
+        document.write(`<hr>test11 : ${test11(11)}<br>`)
+
+        //중괄호가 존재하면 리턴을 따로 써야하는데, 밑에건 중괄호가 없어서 리턴이 자동으로 추가됨
+        const test12 = (n) => (n % 2 == 0) ? "t12짝짝" : "t12홀홀" ;
+        
+        document.write(`<hr>test11 : ${test12(11)}<br>`)
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

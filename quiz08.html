@@ -41,8 +41,6 @@
             }
         }
 
-        
-
     </script>
 </head>
 <body onload= "init()">
@@ -51,5 +49,17 @@
         <HR>
             <img id="pic" src="images/jol01.png">
     </div>
+    <script>
+        let div = document.getElementById("txt");
+        let num = 10;
+        let sum = 100;
+        //++num; // num =11;
+        // 전치 ( ++num) : 우선시 된다. 제일 먼저 연산
+        // 후치 ( num++) : 모든 연산이 끝난 후 자기 자신을 증가한다
+        //sum = sum(100) + num(10)++; = 110
+        //sum = sum(100) + ++num(11); = 111
+        sum = sum + ++num;
+        div.innerHTML = sum + ":" + num;
+    </script>
 </body>
 </html>
