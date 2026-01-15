@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        const test01 =()=> {
+            let list01 = [1, 2, 3]
+            console.log("변경 전 list :", list01) //let list02=list01; //주소(위치 정보)만 대입
+            //let list02 = [list01[0], list01[1],list01[2] ] // 데이터 자체를 새롭게 만듦, 깊은 복사임, 밑에가 원리임
+            //let list02=[]
+            //list02.push(list01[0]);
+            //list02.push(list01[1]);
+            //list02.push(list01[2]);
+            let list02=[ ...list01] //깊은 복사를 간편하게 할 때 사용함
+
+            //list.forEach( (value, index)=> {list02.push(value)} ) 동일한 결과를 포이치로도 가능함
+
+            //let list02 = list01; // 둘 다 동일한 공간 주소를 알고 있다고 보면 됨, 얕은 복사라고 함
+            console.log("변경 전 list02 :", list02)
+
+            list02[1] = 1234;
+            list02.push("새로운 데이터") // 새로운 데이터 추가
+
+            console.log("변경 후 list01 :", list01)
+            console.log("변경 후 list02 :", list02) //리스트 1,2 둘다 동일한 데이터가 변경됨 - 얕은 복사
+
+            let dic01 = {id:"aaa", name:"홍길동"}
+            //let dic02 = dic01      // 얕은 복사
+            let dic02 = { ...dic01 } // 깊은 복사, 소괄호로 묶는다, 배열은 대괄호로 묶음
+            dic01['id'] = "bbb"
+
+            console.log("변경 후 dic01 : ", dic01)
+            console.log("변경 후 dic02 : ", dic02)
+        }
+        const btn =()=> {
+            const div = document.getElementById("div");
+            const img = div.firstElementChild
+            img.src= "images/jol03.png"
+            
+            //const img2 = img.cloneNode(true); //깊은 복사로 복제본으로 똑같은게 만들어짐 img2에만 적용됨
+            const img2 = img; //얕은 복사
+            img2.width="100";
+
+            console.log(img)
+            console.log(img2)
+
+            div.lastElementChild.appendChild(img2) // 밑에 div 마지막에 추가하겠다는 의미, 같은 공간을 말해서 얕은복사라 하나의 공간으로 이동하게 됨
+        }
+    </script>
+    <style>
+        #div div {width: 100px; height: 100px; border: 1px solid; background-color:gold;}
+        img{width:50px; height: 50px;}
+    </style>
+</head>
+<body onload="test01()">
+    <div id="div">
+        <img src="images/jol01.png">
+        <div></div>
+    </div>
+    <button type="button" onclick="btn()">클릭</button>
+</body>
+</html>

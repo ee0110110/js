@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        td img {width:100px; height: 100px;}
+        #modal_wrap{
+            display: none;
+            width:100%; height: 100%; 
+            position: absolute; top: 0; left: 0; background-color: rgba(0,0,0,0.4);}
+        #food{
+            display: none; 
+            position:absolute;
+            top: 100px; left: calc( 50% - 200px);
+            width: 400px; height: 500px; border: 1px solid;
+            border-radius: 5px; background-color:beige
+        }
+    </style>
+    <script>
+        window.onload =() =>{
+            //document.getElementById("0")
+            //document.getElementById("1")
+            //document.getElementById("2") 원래 이렇게 했는데 밑에 포 문으로 생략 가능함
+            for( let i=0; i<3; i++){
+                let ev = document.getElementById( i );
+                ev.addEventListener("click",views2) //클릭하면 뷰가 나타남
+            }
+        }
+        const views =(event)=> {
+            console.log(event.target.src)
+            document.getElementById("imgSrc").src = event.target.src
+            let modal_wrap = document.getElementById("modal_wrap")
+            modal_wrap.style.display="block" // 이미지 누르면 회색 박스 소환
+        }
+        function closeFunc(){
+            document.getElementById("modal_wrap").style.display = "none";
+        }
+        
+        const views2 =(event)=> {
+            console.log(event.target.src)
+            let modal_wrap = document.getElementById("modal_wrap")
+            modal_wrap.style.display="block" // 이미지 누르면 회색 박스 소환
+
+            let food = document.getElementById("food")
+            food.style.display = "block"; // 박스 소환
+
+            /*
+            let msg = `
+                <img src="${event.target.src}">
+            `;
+            food.innerHTML = msg; // 상품목록에 있는 이미지가 빠지지 않게 해줌..
+            */
+           let img = document.createElement("img")
+           img.src = event.target.src;
+           img.width = "400";
+           img.height="200"
+            food.appendChild(img) //이미지가 박스 안에 들어오고 꽉차게 함
+
+            const h3 = document.createElement("h3")
+            h3.innerHTML = "맛있는 음식"
+            food.appendChild(h3)
+            //food.appendChild(event.target) // 이미지가 박스 안에 들어옴 여백을 사라지게 해야함, 문자니까 이너차일드가 아니라 이너html로 해야함
+
+            const closeBtn = document.createElement("button")
+            closeBtn.innerHTML="창 닫기"
+            closeBtn.addEventListener("click", closeFunc2)
+            food.appendChild(closeBtn)
+        }
+        function closeFunc2(){
+            document.getElementById("modal_wrap").style.display = "none";
+            document.getElementById("food").innerHTML=""
+        }
+    </script>
+</head>
+<body>
+    <div id="modal_wrap"></div>
+        <div id="food"></div>
+    <table>
+        <thead>
+            <tr>
+                <th colspan="3"> - 상 품 목 록 - </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><img src="images/맛집01.jpg" id="0"></td>
+                <td><img src="images/맛집02.jpg" id="1"></td>
+                <td><img src="images/맛집03.jpg" id="2"></td>
+            </tr>
+        </tbody>
+    </table>    
+</body>
+</html>

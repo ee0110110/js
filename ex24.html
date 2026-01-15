@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        const user = {
+            id : "값",
+            printId : () => {
+                alert("test : " + user['id']) // 또는 user.id // 오브젝트에 이렇게 함수도 가능하다는 걸 보여줌
+            }
+        }
+        const func01 =() =>{
+            console.log(user['id']) // 얘는 그냥 실행, 키 id를 실행하면 value인 값이 출력됨
+            console.log(user.printId()) //함수는 괄호 침
+            user.추가 = "ㅁㅁㅁ"; // 추가가 키, ㅁㅁㅁ가 value
+            user['추가2'] = "aaa"; // 추가2가 키, aaa가 value
+            console.log(user)
+        }
+    </script>
+</head>
+<body>
+    <button onclick="func01()">클릭</button>
+</body>
+</html>

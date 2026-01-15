@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        let cnt = 0;
+        const inner = () =>{
+            cnt ++;
+            let msg = `내용 : ${cnt}<br>`;
+            let txt = document.getElementById("txt");
+            //txt.innerHTML = msg; 
+            //txt.innerText = msg;
+            //txt.insertAdjacentHTML("afterbegin",msg) //위로 내용 추가
+            txt.insertAdjacentHTML("beforeend",msg)  //아래로 내용 추가
+        }
+        let img;
+        const addElement = () => {
+            img = document.createElement("img"); //이미지 태그 만들기?
+            //console.log(img)
+            //img.src = "cat.jpg";
+            //img.width = "100";
+            //img.height = "100";
+            //img.style.height = "100px";
+
+            //img.onclick="test()";
+            img.setAttribute("onclick", "test()")
+            img.setAttribute("src", "cat.jpg")
+            img.setAttribute("width","100")
+            img.setAttribute("style","height: 100px; border: 3px solid;")
+
+            let txt = document.getElementById("txt2"); 
+            //txt.align = "center"
+            txt.appendChild( img ) //이미지일 땐 이너html 쓰는게 아니라 어펜드로 추가함
+        }
+        const remoElement = () => {
+            let txt = document.getElementById("txt2")
+            //txt.remove(); // 사진을 삭제하게 함
+            console.log(txt.childNodes)
+            console.log(txt.childNodes[0])
+            //txt.removeChild(txt.childNodes[0]) //자식에 대한 내용을 차례대로 삭제함
+            
+            //txt.childNodes.length - 1 //총 개수에서 -1 씩 뒤에서부터 삭제할 때 렝스를 활용함
+            //총 3개 데이터 [0, 1, 2]
+            txt.removeChild(txt.childNodes[txt.childNodes.length - 1 ])
+        }
+        const tableAdd = () =>{
+            const data = [
+                {id:"aaa", name:"홍길동"},
+                {id:"bbb", name:"김개동"},
+            ]
+            let txt = document.getElementById("txt3")
+            const table = document.createElement("table") //테이블 추가함
+            table.border = 1
+            //console.log(table)
+            const trHead = document.createElement("tr") // tr 생성함
+            console.log(trHead)
+            const th1 = document.createElement("th")
+            const th2 = document.createElement("th")
+            th1.innerHTML = "아이디";
+            th2.innerHTML = "이름";
+            trHead.appendChild(th1)
+            trHead.appendChild(th2)
+            console.log(trHead) // 여기까지 테이블 헤드에 아이디 이름 생성함
+
+            table.appendChild(trHead) //화면에 보여지는 기능
+
+            data.forEach( (d) => {
+                let tr = document.createElement("tr");
+                let td1 = document.createElement("td")
+                let td2 = document.createElement("td")
+
+                td1.innerHTML = d["id"];
+                td2.innerHTML = d["name"];
+                // 테이블에 이름 넣는 중
+                tr.appendChild(td1)
+                tr.appendChild(td2)
+                table.appendChild(tr)
+            } );
+
+
+            txt.appendChild(table) //화면에 보여지는 기능
+        }
+    </script>
+</head>
+<body>
+    <div id="txt3"></div>
+    <button type="button" onclick="tableAdd()">테이블 추가</button>
+<hr>
+    <div id="txt2">내용</div>
+    <button type="button" onclick="addElement()">이미지 추가</button>
+    <button type="button" onclick="remoElement()">이미지 삭제</button>
+
+<hr>
+    <div id="txt">내용</div>
+    <button type="button" onclick="inner()">click</button>
+</body>
+</html>

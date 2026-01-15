@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #wrap {width: 300px; border: 1px solid; margin: 0 auto; text-align: center;}
+        #box {height: 200px; padding-top: 20px;}
+        #target{width: 150px; height: 150px; margin: 0 auto; display: none; }
+    </style>
+    <script>
+        let target;
+        window.onload = () => {
+            target = document.getElementById("target")
+            const show = document.getElementById("1")
+            const btn2 = document.getElementById("2")
+            const auto = document.getElementById("auto")
+            const remo = document.getElementById("removeTarget")
+            show.addEventListener("click", boxFunc)
+            btn2.addEventListener("click", boxFunc)
+            auto.addEventListener("click", boxFunc)
+            remo.addEventListener("click", boxFunc)
+            //target.style.display = "block"
+            //target.style.display = "none"
+        }
+        const boxFunc =(event)=> {
+            clearTimeout( e ) // 현재 동작하는 셋타임아웃을 멈춰줘라
+            switch(event.target.id){
+                case "1": target.style.background = "red"; 
+                          target.style.display = "block"; break;
+                case "2": 
+                    target.style.display = "block";
+                    target.style.background = "green";  break;
+                case "removeTarget": target.style.display = "none"; break;
+                case "auto" : autoFunc();
+            }
+        }
+        let e;
+        let arrColor = ["red", "green", "gold", "pink"]
+        let index = 0;
+        let bool = true;
+        const autoFunc = () => {
+            //console.log("실행")
+            if(bool){
+            target.style.display = "block" ; //참이면 나타남
+            target.style.background = arrColor[index]
+            index++;
+            if(index === arrColor.length )
+                index=0;
+            }else{
+                target.style.display = "none" ; //거짓이면 숨김
+            }
+            bool =!bool; //참일땐 거짓으로, 거짓일땐 참으로 하면서 깜빡이듯이 반복되는 표현이 추가됨, 위에 bool부터임
+            target.style.display = "block" ;
+            target.style.background = arrColor[index]
+            index++; // 1초에 한번씩 인덱스가 증가하면서 색상이 변경됨, 세번째 이후론 컬러 변경이 안됨
+            if(index === arrColor.length )
+                index=0; // 네번째에 반복시키는 것임
+            e = setTimeout(autoFunc, 1000)
+        }
+    </script>
+</head>
+<body>
+    <div id ="wrap">
+        <div id ="box">
+            <h3 id="target"></h3>
+        </div>
+        <hr>
+        <button class="btn" id="1">버튼1</button>
+        <button class="btn" id="2">버튼2</button>
+        <button class="btn" id="auto">자동</button>
+        <button id="removeTarget">지우기</button>
+
+    </div>
+</body>
+</html>
